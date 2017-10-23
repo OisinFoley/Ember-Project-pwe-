@@ -1,5 +1,102 @@
+{{#link-to 'application' }}	<h2>Welcome to Oisin's Ember app </h2> {{/link-to}}	<br> 
+
+{{link-to 'Papers' 'papers'}}	<br>
+{{link-to 'Staplers' 'staplers'}}   <br><br>
+{{!-- go to *router.js* in root/app/ to see how to define custom route name --}}
+
+{{!-- the above link-to 'helper' defines the text for the link, followed by the module name of the route to wire up to the click event--}}
+
+{{!-- renders the route specific html content --}}
+{{outlet}} <br><br>
+
+{{!-- 
+
+	outlet is posting whatever is contained inside the .hbs file for the specific route, 
+	its  position within this main file will determine the rendering position
+
+ --}}
+
+{{!-- {{template-names}} <br> --}}
+
+
+{{!-- use of ember data and models starting on next line --}}
+
+{{#each model as |book|}}
+	{{book.title}}
+	{{book.author}}
+	{{book.date}}
+{{/each}}
+
+{{!-- end of use of ember data and models --}}
+
+
+{{!-- 
+	defined number in office-stapler.js which the use of 'this' in the identically-named .hbs file imported 
+	now our use of as |any-alias-name| gives access to all the data defined in the office-stapler.js file(the controller file) 
+--}}
+
+{{!-- {{#office-stapler action="pressed" as |prop|}}
+this way is fine and all, but we could do it the following way, which is a CLOSURE ACTION, which is a better practice --}}
+{{!-- takes controller's pressed action, and assigns to this pressed property --}}
+{{!-- now we don't use this.sendAction in the app/compnents file (the component's .js file) -> we use this.attrs instead --}}
+{{#office-stapler pressed=(action "pressed") as |prop|}}
+
+{{prop.mynumber}} <br>
+{{prop.colour}} <br>
+1 <br>
+2 <br>
+Inside office stapler block component <br>
+3 <br>
+{{/office-stapler}}
+
+{{!-- this is testing a CONTEXTUAL COMPONENT --}}
+<h1>Second example</h1>
+{{#office-supplies as |office|}}
+	{{#office.stapler as |someAlias|}} <br>
+	Remember just as above, we can say my favourite colour is <br>{{someAlias.colour}} <br>
+	{{/office.stapler}}
+	{{!-- 
+		we've reused the block component from above, but this contextual component almost acts as a container 
+		which we can call nested compnents(and their functions) from
+	--}}
+	{{office.chair}} <br>
+	
+{{/office-supplies}}
+
+
+
+{{!--
+
+<label>1) Note that if we add an item through one textbox input, then it's added to both.
+This behaviour also happened in Angular, but be familiar with the term 'shared state'. <br>
+2) The states are no longer shared when the array is declared inside the init() oart of the page's lifecycle(see fruit-list.js for simple code sample comparison ) </label><br><br>
+
+--}}
+
+{{!--
+
+	this is a comment, hardcoding our fruit values like we've done below means binding these compnents won't work anymore as
+	we've also changed how they were declared in our CTRL. This commented out way obviously makes more sense as an implementation method, and has far more uses
+
+	{{fruit-list}}
+
+	{{fruit-list}} 
+
+--}}
+
+{{!--
+
+	{{fruit-list fruit='banana orange apple mango'}}<br><br>
+
+	{{fruit-list fruit='kiwi pineapple apple cherry'}}<br><br>
+
+--}}
+
+<h2>Welcome to Ember</h2>
+
+
+
 {{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
+{{!--	{{welcome-page}}	--}}
 {{!-- Feel free to remove this! --}}
 
-{{outlet}}

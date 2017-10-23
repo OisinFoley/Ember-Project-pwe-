@@ -1,0 +1,36 @@
+<h2>This is an office stapler</h2>
+
+{{!-- 
+
+	component imported like the following is called INLINE: 
+	{{office-stapler}}
+	whereas a block form is when it's written like so:
+	{{#office-stapler}}
+
+	{{/office-stapler}}
+
+	yiels is a way to use a component but also include some dynamic/custom content each time(if desired) that you use the component. see application.hbs' output of this office-stapler
+	yield will render whatever is defined inside the component's block statement in the place of yield
+	yield pulls the data to use from the component(application.hbs) in which this particular component(office-stapler) is being used
+
+SAMPLE:
+
+	Before 
+	1 
+	2 
+	Inside office stapler block component 
+	3 
+
+	4 
+	After
+
+--}}
+<label><u>Using a block component</u></label> <br>
+
+Before <br>
+	{{!-- {{yield this}}	<br> --}}
+	 {{!-- rather than pass all the available props through 'this', we can do the following to pick individuals and pass them under a new alias  --}}
+		{{yield (hash colour="red" staplesCount=100 mynumber=number)	}}
+	
+	4 <br>
+After  <br>

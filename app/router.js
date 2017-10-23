@@ -7,6 +7,11 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('papers', { path:'my_papers '});
+  this.route('staplers', { path:'my_staplers '});
+  // this.route('books', { path:'books'});
+  // the follwoing handles an invalid route entered into the browser
+  this.route('page-not-found', {path:'/*wildcard'});
 });
 
 export default Router;
